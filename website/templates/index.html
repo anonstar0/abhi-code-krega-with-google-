@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <title>abhilander</title>
+    <link href="../static/dist/output.css" rel="stylesheet" />
+
+    <style>
+      html {
+        overflow: scroll;
+        overflow-x: hidden;
+      }
+      ::-webkit-scrollbar {
+        width: 0; /* Remove scrollbar space */
+        background: transparent; /* Optional: just make scrollbar invisible */
+      }
+      /* Optional: show position indicator in red */
+      ::-webkit-scrollbar-thumb {
+        background: white;
+      }
+
+      .header {
+        width: 100%;
+        background-image: url("/static/image/c2.jpg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-color: rgba(0, 0, 0, 0.65);
+      }
+    </style>
+  </head>
+  <body class="min-h-full">
+    <header class="bg-black min-h-full">
+      <div class="header">
+        <!-- navbar... -->
+
+        <nav
+          class="relative w-full flex flex-wrap items-center space-x-3 py-4 pl-8 shadow-lg justify-between bg-transparent" id="hd2"
+        >
+          <div class="container-fluid md:mx-3 md:flex flex-wrap md:space-x-9">
+            <div></div>
+            <div
+              class="transition md:hidden space-y-2  ease-in-out pl-2" onclick="shownav('hd1')"
+            >
+              <div class="w-8 h-0.5 bg-gray-600" ></div>
+              <div class="w-8 h-0.5 bg-gray-600" ></div>
+              <div class="w-8 h-0.5 bg-gray-600" ></div>
+            </div>
+            <!-- <div class="text-white" onclick="shownav('hd1')">nav</div> -->
+            <div class="container-fluid hidden md:mx-3 md:flex md:space-x-9">
+              <div
+                class="text-gray-500 hover:text-gray-700 font-bold focus:text-gray-700 hover:cursor-pointer"
+              >
+                <a href="/"> Home</a>
+              </div>
+              {% if user%}
+              <div
+                class="text-gray-500 hover:text-gray-700 focus:text-gray-700 hover:cursor-pointer"
+              >
+                <a href="/online">Online</a>
+              </div>
+
+              <div
+                class="text-gray-500 hover:text-gray-700 focus:text-gray-700 hover:cursor-pointer"
+              >
+                <a href="/logout">Logout</a>
+              </div>
+              {% else %}
+              <div
+                class="text-gray-500 hover:text-gray-700 focus:text-gray-700 hover:cursor-pointer"
+              >
+                <a href="/login/">Login/Register</a>
+              </div>
+              {% endif %}
+            </div>
+          </div>
+          <div
+            class="text-center text-white md:hidden md:pl-56 pr-3 mt-1 font-mono justify-center items-center hover:cursor-default"
+          >
+            
+            {% if user%} <u>{{ user }}</u>Codekrega {% else %}
+            AbhiCodeKrega {% endif %}
+          </div>
+
+          <div
+            class="float-right hidden text-white md:block md:pl-20 pr-20 font-mono justify-center items-center hover:cursor-default"
+          >
+            {% if user%} Coder welcome's you {{ user }}! {% else %}
+            Coder {% endif %}
+          </div>
+      
+        </nav>
+
+        <!-- mobile nav start -->
+        <div class="bg-black text-white w-screen h-screen align-middle inset-0 hidden"  id="hd1">
+      <div class="absolute mx-20 flex-col space-y-20 inset-0 text-xl">
+
+
+        <span
+          class="absolute top-4 bottom-0 right-0  pl-3 py-4"
+          onclick="hide_msg('hd1')"
+        >
+          <svg
+            class="fill-current h-10 w-10 text-gray-100 lg:animate-spin animate-pulse hover:animate-none"
+            role="button"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+          >
+            <title>Close</title>
+            <path
+              d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+            />
+          </svg>
+        </span>
+
+
+        <div></div>
+        <div
+          class="text-gray-500 hover:text-gray-700 font-bold focus:text-white hover:cursor-pointer"
+        >
+          <a href="/"> Home</a>
+        </div>
+        {% if user%}
+        <div
+          class="text-gray-500 hover:text-gray-700 focus:text-gray-700 hover:cursor-pointer"
+        >
+          <a href="/online">Online</a>
+        </div>
+
+        <div
+          class="text-gray-500 hover:text-gray-700 focus:text-gray-700 hover:cursor-pointer"
+        >
+          <a href="/logout">Logout</a>
+        </div>
+        {% else %}
+        <div
+          class="text-gray-500 hover:text-gray-700 focus:text-gray-700 hover:cursor-pointer"
+        >
+          <a href="/login/">Login/Register</a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    <!-- mobile nav ends -->
+
+        <!-- navbar_end -->
+
+        <!--main  header_ start -->
+
+        <div
+          class="relative bg-local overflow-hidden bg-no-repeat bg-cover border-b-2 m-9 border-black shadow-lg shadow-white"
+          style="height: 550px"
+        >
+          <!-- <div class="absolute top-0 right-0 bottom-0 left-0 w-full h-full overflow-hidden bg-fixed"
+      style="background-color: rgba(0, 0, 0, 0.65)"> -->
+          <div class="flex justify-center items-center h-full float-right">
+            <div class="text-center text-white px-6 lg:pr-12 pt-80 lg:p-0">
+              <h1
+                class="text-5xl font-bold font-serif mt-0 mb-6 bg-black w-fit"
+              >
+                Coder
+              </h1>
+              <h3 class="text-3xl font-bold font-mono mb-8 bg-black w-fit">
+                =>This is where i belong
+              </h3>
+            </div>
+          </div>
+        </div>
+
+        <!-- </div> -->
+
+        <!-- main header_end -->
+
+        <!-- content area start -->
+      </div>
+
+      <div class="container">
+        <br />
+        <br />
+
+        <div
+          class="grid grid-cols-1 px-32 md:px-10 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-40 content-center md:pl-52 lg:pb-0 justify-between"
+        >
+          <div
+            class="transition-transform border-2 w-fit text-center hover:cursor-default h-auto overflow-auto hover:bg-white text-white hover:text-black hover:shadow-xl hover:shadow-gray-500 hover:-translate-y-2 underline rounded-lg ease-in-out duration-500 will-change-transform"
+          >
+            <a href="#!">
+              <img
+                src="https://pluspng.com/img-png/python-logo-png-open-2000.png"
+                alt="python"
+              />
+              <span>contant here Lorem,?</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <br />
+      <br />
+
+      <!-- content area ends -->
+    </header>
+
+    <!-- copy-rights -->
+    <footer>
+      <div class="min-h-full">
+        <div
+          class="relative md:h-10 w-full font-mono text-center text-white justify-center pt-2 bg-black"
+        >
+          copy-rights: AbhiCodeKrega
+        </div>
+      </div>
+    </footer>
+
+    <script src="{{url_for('static', filename='dist/java_script.js')}}"></script>
+  </body>
+</html>

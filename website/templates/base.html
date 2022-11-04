@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0 , maximum-scale=1,user-scalable=no"
+    />
+    <title>abhilander</title>
+    <link href="../static/dist/output.css" rel="stylesheet" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@1,300&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+      integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+      crossorigin="anonymous"
+    ></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+
+    <style>
+      html {
+        overflow: scroll;
+        overflow-x: hidden;
+      }
+      ::-webkit-scrollbar {
+        width: 0; /* Remove scrollbar space */
+        background: transparent; /* Optional: just make scrollbar invisible */
+      }
+      /* Optional: show position indicator in red */
+      ::-webkit-scrollbar-thumb {
+        background: white;
+      }
+
+      .login-btn {
+        justify-content: center;
+        flex-direction: row;
+        display: flex;
+        background-color: rgb(255, 255, 255);
+        justify-content: center;
+        align-items: center;
+        width: 15rem;
+        padding: .1rem;
+        box-shadow: 3px 3px 3px rgb(170, 170, 170);
+        border-radius: 15px;
+        margin-bottom: 20px;
+      }
+      .btn-text {
+        justify-content: center;
+        padding: 10px;
+        font-family: "Poppins", sans-serif;
+        color: rgb(85, 85, 85);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- navbar... -->
+
+    <nav
+      class="navbar relative w-full flex flex-wrap items-center space-x-3 py-4 shadow-lg justify-between bg-transparent"
+    >
+      <div class="container-fluid mx-3 md:flex flex-wrap space-x-9">
+        <div></div>
+
+        <div class="bar container-fluid mx-3 space-x-9">
+          <div
+            class="text-gray-500 hover:text-gray-700 font-bold focus:text-gray-700 hover:cursor-pointer"
+          >
+            <a href="/"> Home</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- navbar_end -->
+
+    <div class="content">{% block content %} {% endblock content %}</div>
+
+    <script src="{{url_for('static', filename='dist/java_script.js')}}"></script>
+  </body>
+</html>

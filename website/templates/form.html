@@ -1,0 +1,262 @@
+{% extends 'base.html' %} {% block content %}
+
+<!-- "request.path" takes the endpoint autometically from the form called -->
+<form method="POST" action="{{request.path}}">
+  <br />
+
+  <span class="text-2xl font-mono pl-5 underline">{{request.path}} </span>
+
+  <div
+    class="border-2 border-black shadow-xl space-y-10 text-center content-center mx-10 mt-10 lg:mx-96 md:py-10 rounded-2xl w-fit md:w-auto bg-white"
+  >
+    <span class="text-2xl font-serif">Namaste!</span>
+    {{ form.csrf_token }}
+    
+    <!-- s1 -->
+    {% if login_error%}
+    <div
+      class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 w-auto mx-8 rounded relative"
+      role="alert" id="e1"
+    >
+      <strong class="font-bold">Holy smokes!</strong>
+      <span class="block sm:inline">{{v_error}}</span>
+      <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="hide_msg('e1')">
+        <svg
+          class="fill-current h-6 w-6 text-red-500"
+          role="button"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+        >
+          <title>Close</title>
+          <path
+            d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+          />
+        </svg>
+      </span>
+    </div>
+    {% endif %}
+
+    <!-- s1 end -->
+
+    <!-- execute if only  called from register endpoint -->
+
+    <!-- s2 -->
+    {% if request.path == '/register/' %}
+    <div class="">
+      {{form.username.label }}
+      {{ form.username(class_="ml-9 rounded-lg px-1
+      font-serif",placeholder="Username")}}
+    </div>
+    {% if error%}
+    <div
+      class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 w-auto mx-8 rounded relative"
+      role="alert" id="e2"
+    >
+      <strong class="font-bold">Holy smokes!</strong>
+      <span class="block sm:inline">{{u_error}}</span>
+      <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="hide_msg('e2')">
+        <svg
+          class="fill-current h-6 w-6 text-red-500"
+          role="button"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+        >
+          <title>Close</title>
+          <path
+            d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+          />
+        </svg>
+      </span>
+    </div>
+    {% endif %}
+ 
+    
+    
+    {% for error in form.username.errors %}
+    <div
+      class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 w-auto mx-8 rounded relative"
+      role="alert" id="e3"
+    >
+      <strong class="font-bold">Holy smokes!</strong>
+      <span class="block sm:inline">{{error}}</span>
+      <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="hide_msg('e3')">
+        <svg
+          class="fill-current h-6 w-6 text-red-500"
+          role="button"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+        >
+          <title>Close</title>
+          <path
+            d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+          />
+        </svg>
+      </span>
+    </div>
+    {% endfor%}
+    {% endif%}
+
+    <!-- s2 end -->
+    <!-- only registration end -->
+     
+
+    <!-- s3 -->
+    <div>
+      {{form.email.label }}
+      <!-- overwriting the class of flaskforms -->
+      {{ form.email(class_="ml-16 rounded-lg px-1
+      font-serif",placeholder="Email")}}
+    </div>
+
+    {% if error %}
+
+    <div
+      class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 w-auto mx-8 rounded relative"
+      role="alert" id="e4"
+    >
+      <strong class="font-bold">Holy smokes!</strong>
+      <span class="block sm:inline">{{e_error}}</span>
+      <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="hide_msg('e4')">
+        <svg
+          class="fill-current h-6 w-6 text-red-500"
+          role="button"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+        >
+          <title>Close</title>
+          <path
+            d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+          />
+        </svg>
+      </span>
+    </div>
+    {% endif %} 
+    
+    {% for error in form.email.errors %}
+    <div
+      class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 w-auto mx-8 rounded relative"
+      role="alert" id="e5"
+    >
+      <strong class="font-bold">Holy smokes!</strong>
+      <span class="block sm:inline">{{error}}</span>
+      <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="hide_msg('e5')">
+        <svg
+          class="fill-current h-6 w-6 text-red-500"
+          role="button"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+        >
+          <title>Close</title>
+          <path
+            d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+          />
+        </svg>
+      </span>
+    </div>
+    {% endfor%}
+    <!-- s3 end -->
+
+    <!-- s4 -->
+    <div class="">
+      {{form.password.label }}
+      {{ form.password(class_="ml-10 rounded-lg px-1
+      font-serif",placeholder="Password")}}
+    </div>
+
+    {% for error in form.password.errors %}
+    <div
+      class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 w-auto mx-8 rounded relative"
+      role="alert" id="e6"
+    >
+      <strong class="font-bold">Holy smokes!</strong>
+      <span class="block sm:inline">{{error}}</span>
+      <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="hide_msg('e6')">
+        <svg
+          class="fill-current h-6 w-6 text-red-500"
+          role="button"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+        >
+          <title>Close</title>
+          <path
+            d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+          />
+        </svg>
+      </span>
+    </div>
+    {% endfor%}
+
+    <!-- s4 end -->
+
+    <!-- execute if only  called from register endpoint -->
+    <!-- s5 -->
+    {% if request.path=="/register/" %}
+
+    <div class="">
+      {{form.confirm_password.label }} {{ form.confirm_password(class_="ml-9
+      rounded-lg px-1 pl-2 font-serif",placeholder="confirm_password")}}
+    </div>
+    {% for error in form.confirm_password.errors %}
+    <div
+      class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 w-auto mx-8 rounded relative"
+      role="alert" id="e7"
+    >
+      <strong class="font-bold">Holy smokes!</strong>
+      <span class="block sm:inline">{{error}}</span>
+      <span class="absolute top-0 bottom-0 right-0 px-4 py-3" onclick="hide_msg('e7')">
+        <svg
+          class="fill-current h-6 w-6 text-red-500"
+          role="button"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 20 20"
+        >
+          <title>Close</title>
+          <path
+            d="M14.348 14.849a1.2 1.2 0 0 1-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 1 1-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 1 1 1.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 1 1 1.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 0 1 0 1.698z"
+          />
+        </svg>
+      </span>
+    </div>
+    {% endfor%} {% endif %}
+    <!-- s5 end -->
+    <!-- only registration end -->
+
+    <!-- submit button for form -->
+    <input
+      class="transition border px-3 rounded-r hover:bg-gray-700 hover:text-white ease-in-out duration-500 border-black font-mono"
+      type="submit"
+      value="submit"
+    />
+
+    <!-- if on registration page show login page and vise-versa -->
+    <p class="pb-5 font-thin">
+      {% if request.path != '/register/' %} New here?
+      <a class="underline hover:text-gray-700" href="{{url_for('register')}}"
+        >Create account</a
+      >
+      {% else %} Already have an account?
+      <a class="underline hover:text-gray-700" href="{{url_for('login')}}"
+        >Login</a
+      >
+      {% endif %}
+    </p>
+      <!-- google stuff   -->
+or
+
+       <div align="center">
+            <a href="google/" class="login-btn" style="text-decoration:none;">
+                <img id="google" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2048px-Google_%22G%22_Logo.svg.png"
+            alt="Google"
+            style="width:40px;height:40px;">
+            <div class="btn-text">
+                Login with Google
+            </div>
+            </a> 
+        </div>
+  </div>
+
+</form>
+
+   
+
+{% endblock content %}
